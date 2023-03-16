@@ -1,9 +1,16 @@
+namespace SpriteKind {
+    export const borde = SpriteKind.create()
+}
+sprites.onOverlap(SpriteKind.borde, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
+    sprites.destroy(otherSprite, effects.fire, 100)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
     sprites.destroy(otherSprite)
 })
 let crater: Sprite = null
-info.changeCountdownBy(30)
+info.startCountdown(30)
 info.setLife(3)
 let nave = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -25,8 +32,12 @@ let nave = sprites.create(img`
     `, SpriteKind.Player)
 nave.setPosition(77, 107)
 controller.moveSprite(nave, 100, 0)
+let borde = sprites.create(img`
+    1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+    `, SpriteKind.borde)
+borde.setPosition(80, 120)
 forever(function () {
-    if (info.countdown() < 10) {
+    if (info.score() == 15) {
         game.gameOver(true)
     }
     game.setGameOverEffect(true, effects.confetti)
