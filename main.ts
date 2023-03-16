@@ -10,7 +10,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     sprites.destroy(otherSprite)
 })
 let crater: Sprite = null
-info.startCountdown(30)
 info.setLife(3)
 let nave = sprites.create(img`
     . . . . . . . . . . . . . . . . 
