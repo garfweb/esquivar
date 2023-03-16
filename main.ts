@@ -37,7 +37,7 @@ let borde = sprites.create(img`
     `, SpriteKind.borde)
 borde.setPosition(80, 120)
 forever(function () {
-    if (info.score() == 15) {
+    if (info.score() == 20) {
         game.gameOver(true)
     }
     game.setGameOverEffect(true, effects.confetti)
